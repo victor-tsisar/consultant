@@ -1,3 +1,3 @@
 Training project: corporative site - layout, CSS and JS.
 
-Link: 
+Link: https://github.com/victor-tsisar/consultant/

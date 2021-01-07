@@ -548,6 +548,10 @@ fieldset {
 .promo__video {
   position: relative;
 }
+.promo__video-fon {
+  width: 100%;
+  height: auto;
+}
 
 .promo__video::before {
   content: "";
@@ -1315,7 +1319,7 @@ fieldset {
   font-style: italic;
   font-weight: 400;
   font-size: 16px;
-  line-height: 250%;
+  line-height: 140%;
   color: #9d9d9d;
 }
 
@@ -1324,7 +1328,7 @@ fieldset {
   font-style: italic;
   font-weight: 400;
   font-size: 16px;
-  line-height: 250%;
+  line-height: 140%;
   color: #9d9d9d;
 }
 
@@ -1333,7 +1337,7 @@ fieldset {
   font-style: italic;
   font-weight: 400;
   font-size: 16px;
-  line-height: 250%;
+  line-height: 140%;
   color: #9d9d9d;
 }
 
@@ -1342,7 +1346,7 @@ fieldset {
   font-style: italic;
   font-weight: 400;
   font-size: 16px;
-  line-height: 250%;
+  line-height: 140%;
   color: #9d9d9d;
 }
 
@@ -1352,7 +1356,7 @@ fieldset {
   font-style: italic;
   font-weight: 400;
   font-size: 16px;
-  line-height: 250%;
+  line-height: 140%;
   color: #9d9d9d;
 }
 
@@ -1633,6 +1637,9 @@ fieldset {
 @media (max-width: 730px) {
   .slider {
     margin: 50px auto;
+  }
+  .features{
+    background-image: none !important;
   }
 }
 

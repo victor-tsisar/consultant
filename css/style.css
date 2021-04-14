@@ -429,11 +429,13 @@ fieldset {
   max-width: 261px;
   width: 100%;
   padding: 22px 20px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  border-bottom: 7px solid transparent;
 }
 
 .services__item:hover {
   border: 1px solid #9d9d9d;
-  border-radius: 5px;
   border-bottom: 7px solid #c4c4c4;
 }
 
@@ -602,34 +604,10 @@ fieldset {
 .promo__video {
   position: relative;
 }
+
 .promo__video-fon {
   width: 100%;
   height: auto;
-}
-
-.promo__video::before {
-  content: "";
-  position: absolute;
-  background-image: url("../images/play-btn.jpg");
-  background: transparent;
-  width: 180px;
-  height: 180px;
-  top: 50%;
-  right: 50%;
-  z-index: 1000;
-  cursor: pointer;
-}
-
-.promo__btn {
-  display: block;
-  background: transparent;
-  cursor: pointer;
-  position: absolute;
-}
-
-.promo__btn img {
-  width: 180px;
-  height: 180px;
 }
 
 .questions {

@@ -27,6 +27,7 @@ const featuresCardBtn = document.querySelectorAll('.features__card-btn');
 const accountTerms = document.querySelector('.account__terms');
 
 let login = localStorage.getItem(`user`);
+let loginCode = localStorage.getItem(`password`);
 
 function allertWindow() {
     swal({
@@ -84,26 +85,55 @@ function signUp() {
     }
 }
 
-function logIn(event) {
-    event.preventDefault();
+function closeContactForm() {
+    contacts.style.display = 'none';
+    modalBtn.disabled = true;
+    modalBtn.style.visibility = 'hidden';
+}
 
+function showContactForm() {
+    contacts.style.display = 'block';
+    modalBtn.disabled = false;
+    modalBtn.style.visibility = 'visible';
+}
+
+function checkUserName() {
+    if (login) {
+        loginName.value = localStorage.getItem(`user`);
+        loginPassword.value = localStorage.getItem(`password`);
+        userName.style.display = 'inline-block';
+        userName.textContent = login;
+
+        closeContactForm();
+
+        loginBtn.style.zIndex = '-1';
+        logOutBtn.style.zIndex = '1';
+    } else {
+        showContactForm();
+
+        loginBtn.style.zIndex = '1';
+        logOutBtn.style.zIndex = '-1';
+    }
+}
+
+function logIn() {
     if (validName(loginName.value) && validEmail(loginPassword.value)) {
         login = loginName.value;
         localStorage.setItem(`user`, login);
+        loginCode = loginPassword.value;
+        localStorage.setItem(`password`, loginCode);
 
         loginForm.reset();
         formBg.classList.remove('active');
         body.classList.remove('active');
         setTimeout(allertWindow, 500);
 
-        contacts.style.display = 'none';
-        modalBtn.disabled = true;
-        modalBtn.style.visibility = 'hidden';
-        logOutBtn.style.zIndex = '7';
+        closeContactForm();
     } else {
         if (!validName(loginName.value)) {
             loginName.style.borderColor = '#ff0000';
             loginName.textContent = '';
+            loginName.setAttribute('title', 'One word in english. In first opinion, your name');
         } else {
             loginName.style.borderColor = '#9595c9';
         }
@@ -111,6 +141,7 @@ function logIn(event) {
         if (!validEmail(loginPassword.value)) {
             loginPassword.style.borderColor = '#ff0000';
             loginPassword.textContent = '';
+            loginPassword.setAttribute('title', 'Enter your e-mail. In the format myemail@gmail.com');
         } else {
             loginPassword.style.borderColor = '#9595c9';
         }
@@ -123,7 +154,8 @@ function logIn(event) {
 
 function logOut() {
     login = null;
-    localStorage.removeItem(`user`);
+    loginCode = null;
+    localStorage.clear();
 
     userName.style.display = '';
     userName.textContent = '';
@@ -143,8 +175,8 @@ function accountAllowTerms() {
     }
 }
 
-function accountRegister(event) {
-    if (validName(accountName.value) && validEmail(accountPassword.value)) {
+function accountRegister() {
+    if (validName(accountName.value) && validEmail(accountPassword.value) && accountOrder.checked) {
         login = accountName.value;
         localStorage.setItem(`user`, login);
 
@@ -171,6 +203,8 @@ function accountRegister(event) {
             accountPassword.style.borderColor = '#9595c9';
         }
 
+        accountAllowTerms();
+
         alert(`
         Fill the required fields.
         Check for correct!
@@ -182,16 +216,24 @@ function accountRegister(event) {
     console.log('Authorized');
 }
 
+// check localStorage
+checkUserName();
+
 // activate - deactivate 'login form'
-loginBtn.addEventListener('click', toggleModal);
+loginBtn.addEventListener('click', (event) => {
+    event.preventDefault();
+    toggleModal();
+});
 logOutBtn.addEventListener('click', function () {
     logOut();
-    contacts.style.display = 'block';
-    modalBtn.disabled = false;
-    modalBtn.style.visibility = 'visible';
-    logOutBtn.style.zIndex = '-1';
+    checkUserName();
+    showContactForm();
 });
-formBtn.addEventListener('click', logIn);
+formBtn.addEventListener('click', (event) => {
+    event.preventDefault();
+    logIn();
+    checkUserName();
+});
 formBg.addEventListener('click', function (event) {
     if (event.target.classList.contains('active')) {
         toggleModal();
@@ -215,7 +257,10 @@ account.addEventListener('click', function (event) {
         clearAccountForm();
     }
 });
-accountBtn.addEventListener('click', accountRegister);
+accountBtn.addEventListener('click', (event) => {
+    event.preventDefault();
+    accountRegister();
+});
 accountOrder.addEventListener('click', () => {
     accountAllowTerms();
 });
@@ -227,7 +272,6 @@ for (let i = 0; i < featuresCardBtn.length; i++) {
     featuresCardBtn[i].addEventListener('click', allertWindow);
 }
 accountTerms.addEventListener('click', allertDownload);
-
 
 $(document).ready(function () {
     $('.menu__modal').on('click', function () {

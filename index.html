@@ -373,10 +373,10 @@
                     <div class="form__close contact-close">
                     </div>
                     <label for="name" class="form__title">Name</label>
-                    <input class="form__input" id="name" type="text" placeholder="Your name">
+                    <input class="form__input" name="userName" id="name" type="text" placeholder="Your name">
 
                     <label for="password" class="form__title">Password</label>
-                    <input class="form__input" id="password" type="text" placeholder="Your email address">
+                    <input class="form__input" name="userPassword" id="password" type="text" placeholder="Your email address">
 
                     <button class="form__btn" type="submit">SIGN IN</button>
                     <p class="form__text">
@@ -459,24 +459,23 @@
                 </legend>
 
                 <label class="account__label" for="account-name">Your name:<em>*</em></label>
-                <input class="account__input" id="account-name" type="text" placeholder="Enter your name" required>
+                <input class="account__input" name="userName" id="account-name" type="text" placeholder="Enter your name">
 
                 <br>
 
                 <label class="account__label" for="account-surname">Your surname:</label>
-                <input class="account__input" id="account-surname" type="text" placeholder="Enter your surname">
+                <input class="account__input" name="userSurname" id="account-surname" type="text" placeholder="Enter your surname">
             </fieldset>
 
             <fieldset class="account__block">
                 <label class="account__label" for="account-password">Password:<em>*</em></label>
-                <input class="account__input" id="account-password" type="email" placeholder="Enter your email address"
-                    required>
+                <input class="account__input" name="userPassword" id="account-password" type="email" placeholder="Enter your email address">
             </fieldset>
 
             <fieldset class="account__block">
                 <label class="account__label" for="account-date">Your birthday:</label>
                 <input class="account__input" id="account-date" name="account-date" type="date" max="2021-01-01"
-                    min="1979-12-31" placeholder="Enter your birthday">
+                    min="1979-12-31">
 
                 <br>
 
